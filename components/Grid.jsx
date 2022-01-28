@@ -343,17 +343,20 @@ const Grid = forwardRef(({ width, height }, ref) => {
       };
 
       const colourPath = () => {
+        path.reverse();
         path.map((obj, idx) => {
-          if (idx === 0) {
-            loadDocumentObjectByID(obj.cell.id).classList.remove(
-              styles.searchCell
-            );
-            loadDocumentObjectByID(obj.cell.id).classList.add(
-              styles.destinationCell
-            );
-          } else {
-            loadDocumentObjectByID(obj.cell.id).classList.add(styles.path);
-          }
+          setTimeout(() => {
+            if (idx === path.length - 1) {
+              loadDocumentObjectByID(obj.cell.id).classList.remove(
+                styles.searchCell
+              );
+              loadDocumentObjectByID(obj.cell.id).classList.add(
+                styles.destinationCell
+              );
+            } else {
+              loadDocumentObjectByID(obj.cell.id).classList.add(styles.path);
+            }
+          }, 50 * idx);
         });
       };
 

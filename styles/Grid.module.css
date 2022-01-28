@@ -24,7 +24,7 @@
 }
 
 .searchCell {
-  background-color: pink;
+  background-color: rgb(199, 251, 255);
 }
 
 .row {
@@ -38,5 +38,5 @@
 }
 
 .path {
-  background-color: rgb(255, 0, 212);
+  background-color: rgb(255, 187, 0);
 }

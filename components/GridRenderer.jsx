@@ -3,8 +3,8 @@ import Grid from "./Grid";
 import styles from "../styles/GridRenderer.module.css";
 
 const GridRenderer = () => {
-  const width = 20;
-  const height = 20;
+  const width = 30;
+  const height = 15;
   const gridRef = useRef();
   const [key, setKey] = useState(1);
   const [grid, setGrid] = useState(
