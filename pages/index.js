@@ -7,7 +7,12 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Pathfinding Visualiser</title>
-        <meta name="description" content="Next.JS based Graphing Calculator." />
+        <meta
+          name="description"
+          content="Next.JS based Pathfinder visualiser."
+        />
+        <meta name="author" content="Pilchh"></meta>
+        <meta name="theme-color" content="#ffbb00"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
