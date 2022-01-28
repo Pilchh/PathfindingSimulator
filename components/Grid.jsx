@@ -3,8 +3,8 @@ import styles from "../styles/Grid.module.css";
 import { CellTypes } from "../utils/types";
 
 const Grid = forwardRef(({ width, height }, ref) => {
-  const isMouseDown = false;
   const enableDiagonals = false;
+  let isMouseDown = false;
   let initialCellState = false;
   let cells = [];
   let nextID = 0;
@@ -12,7 +12,6 @@ const Grid = forwardRef(({ width, height }, ref) => {
   let queue = [];
   let path = [];
   let searchedCells = [];
-  let sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const createGrid = (width, height) => {
     let rowCount = 0;
@@ -379,7 +378,11 @@ const Grid = forwardRef(({ width, height }, ref) => {
     },
   }));
 
-  return createGrid(width, height);
+  return (
+    <div onMouseLeave={() => (isMouseDown = false)}>
+      {createGrid(width, height)}
+    </div>
+  );
 });
 
 Grid.displayName = "Grid";
