@@ -1,0 +1,42 @@
+.cell {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(231, 231, 231);
+  border: 0.5px solid black;
+}
+
+.cell:hover {
+  background-color: rgb(197, 197, 197);
+}
+
+.cellOn {
+  background-color: rgb(136, 136, 136);
+  transition: 100ms ease-in-out;
+}
+
+.initialCell {
+  background-color: rgb(255, 187, 0);
+}
+
+.destinationCell {
+  background-color: rgb(0, 162, 255);
+}
+
+.searchCell {
+  background-color: pink;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.dragCapture {
+  position: relative;
+}
+
+.path {
+  background-color: rgb(255, 0, 212);
+}
