@@ -2,8 +2,7 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 import styles from "../styles/Grid.module.css";
 import { CellTypes } from "../utils/types";
 
-const Grid = forwardRef(({ width, height }, ref) => {
-  const enableDiagonals = false;
+const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
   let isMouseDown = false;
   let initialCellState = false;
   let cells = [];

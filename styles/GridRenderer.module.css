@@ -41,6 +41,26 @@
   box-shadow: 0 0 0 2px rgb(81, 156, 255);
   border: solid #fff 1px;
 }
+.diagonalsEnabled {
+  height: 40px;
+  width: 100px;
+  margin: 2px 2px 0 2px;
+  padding-inline: 10px;
+  background-color: rgb(255, 162, 55);
+  border-radius: 5px;
+  color: #fffafa;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  border: none;
+}
+
+.diagonalsEnabled:hover {
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgb(255, 162, 55);
+  border: solid #fff 1px;
+}
+
 .buttonRow {
   display: flex;
   flex-direction: row;
@@ -53,4 +73,36 @@
 
 .title {
   margin-block: 0;
+  margin-top: 0.5em;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+}
+
+.instructionsTitle {
+  text-align: center;
+  margin-block: 0;
+  margin-top: 16px;
+}
+
+.instructionsList {
+  margin-top: 0;
+}
+
+.diagCheckbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkboxText {
+  margin-block: auto;
+  text-align: center;
+  padding-bottom: 2px;
+  padding-left: 0.25em;
+}
+
+.marginBlockAuto {
+  margin-block: auto;
 }
