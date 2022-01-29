@@ -117,14 +117,30 @@ const Grid = forwardRef(({ width, height }, ref) => {
 
   const activateCell = (event) => {
     let cell = event.target;
-    cell.classList.add(styles.cellOn);
-    updateCellType(cell.id, CellTypes.BLOCK);
+
+    if (
+      !(
+        cell.classList.contains(styles.initialCell) ||
+        cell.classList.contains(styles.destinationCell)
+      )
+    ) {
+      cell.classList.add(styles.cellOn);
+      updateCellType(cell.id, CellTypes.BLOCK);
+    }
   };
 
   const deactivateCell = (event) => {
     let cell = event.target;
-    cell.classList.remove(styles.cellOn);
-    updateCellType(cell.id, CellTypes.VOID);
+
+    if (
+      !(
+        cell.classList.contains(styles.initialCell) ||
+        cell.classList.contains(styles.destinationCell)
+      )
+    ) {
+      cell.classList.remove(styles.cellOn);
+      updateCellType(cell.id, CellTypes.VOID);
+    }
   };
 
   const getInitialCell = () => {
