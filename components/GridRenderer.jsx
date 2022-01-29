@@ -7,6 +7,9 @@ const GridRenderer = () => {
   const height = 12;
   const gridRef = useRef();
   const [enableDiagonals, setEnableDiagonals] = useState(true);
+  const [diagonalsClass, setDiagonalsClass] = useState(
+    styles.diagonalsDisabled
+  );
   const [solving, setSolving] = useState(false);
   const [buttonText, setButtonText] = useState("Diagonals Disabled");
   const [solveButtonText, setSolveButtonText] = useState("Solve");
@@ -45,8 +48,10 @@ const GridRenderer = () => {
     setEnableDiagonals((prev) => !prev);
     if (!enableDiagonals) {
       setButtonText("Diagonals Disabled");
+      setDiagonalsClass(styles.diagonalsDisabled);
     } else {
       setButtonText("Diagonals Enabled");
+      setDiagonalsClass(styles.diagonalsEnabled);
     }
   };
 
@@ -100,7 +105,7 @@ const GridRenderer = () => {
           Clear
         </button>
         <button
-          className={styles.diagonalsEnabled}
+          className={diagonalsClass}
           onClick={() => {
             toggleDiagonals();
             clearGrid();
