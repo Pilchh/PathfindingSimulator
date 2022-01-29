@@ -21,8 +21,23 @@ const GridRenderer = () => {
 
   return (
     <>
-      <button onClick={() => clearGrid()}>Clear</button>
-      <button onClick={() => gridRef.current.solve()}>Solve</button>
+      <p>
+        <span className={styles.bold}>Instructions:</span> Hold down left shift
+        and click on a cell to place the start and detination nodes. Use left
+        click to place any wall nodes in the cells.
+      </p>
+      <div className={styles.buttonRow}>
+        <button
+          className={styles.solveButton}
+          onClick={() => gridRef.current.bfsSolve()}
+        >
+          Solve
+        </button>
+        <button className={styles.clearButton} onClick={() => clearGrid()}>
+          Clear
+        </button>
+      </div>
+
       {grid}
     </>
   );

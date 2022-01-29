@@ -8,12 +8,9 @@ const Grid = forwardRef(({ width, height }, ref) => {
   let initialCellState = false;
   let cells = [];
   let nextID = 0;
-  let grid = [];
-  let queue = [];
-  let path = [];
-  let searchedCells = [];
 
   const createGrid = (width, height) => {
+    let grid = [];
     let rowCount = 0;
     for (let i = 0; i < height; i++) {
       let colCount = 0;
@@ -297,10 +294,14 @@ const Grid = forwardRef(({ width, height }, ref) => {
   };
 
   useImperativeHandle(ref, () => ({
-    solve() {
+    bfsSolve() {
+      let queue = [];
+      let path = [];
+      let searchedCells = [];
       let search = true;
       let found = false;
       let destination;
+
       const startingCell = {
         cell: getInitialCell(),
         parent: null,

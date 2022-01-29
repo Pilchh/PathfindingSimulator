@@ -1,1 +1,52 @@
+.bold {
+  font-weight: 700;
+}
 
+.clearButton {
+  height: 40px;
+  width: 100px;
+  margin: 2px 2px 0 2px;
+  padding-inline: 10px;
+  background-color: rgb(255, 93, 93);
+  border-radius: 5px;
+  color: #fffafa;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  border: none;
+}
+
+.clearButton:hover {
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgb(255, 93, 93);
+  border: solid #fff 1px;
+}
+
+.solveButton {
+  height: 40px;
+  width: 100px;
+  margin: 2px 2px 0 2px;
+  padding-inline: 10px;
+  background-color: rgb(81, 156, 255);
+  border-radius: 5px;
+  color: #fffafa;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  border: none;
+}
+
+.solveButton:hover {
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgb(81, 156, 255);
+  border: solid #fff 1px;
+}
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+.buttonRow > * + * {
+  margin-left: 1em;
+}
