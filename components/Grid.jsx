@@ -79,7 +79,8 @@ const Grid = forwardRef(({ width, height }, ref) => {
   };
 
   const toggleCell = (event) => {
-    let cell = event.target;
+    let cell = cells[event.target.id];
+    let cellElement = event.target;
 
     if (event.shiftKey) {
       let initialOcc = cells.find((obj) => obj.type === CellTypes.INITIAL);
@@ -87,30 +88,43 @@ const Grid = forwardRef(({ width, height }, ref) => {
         (cell) => cell.type === CellTypes.DESTINATION
       );
 
+      console.log(cell);
+      if (cell.type === CellTypes.INITIAL) {
+        updateCellType(cellElement.id, CellTypes.VOID);
+        cellElement.classList.remove(styles.initialCell);
+        return;
+      }
+
+      if (cell.type === CellTypes.DESTINATION) {
+        updateCellType(cellElement.id, CellTypes.VOID);
+        cellElement.classList.remove(styles.destinationCell);
+        return;
+      }
+
       if (!initialOcc) {
-        updateCellType(cell.id, CellTypes.INITIAL);
-        cell.classList.add(styles.initialCell);
+        updateCellType(cellElement.id, CellTypes.INITIAL);
+        cellElement.classList.add(styles.initialCell);
         return;
       }
 
       if (initialOcc && !destinationOcc) {
-        updateCellType(cell.id, CellTypes.DESTINATION);
-        cell.classList.add(styles.destinationCell);
+        updateCellType(cellElement.id, CellTypes.DESTINATION);
+        cellElement.classList.add(styles.destinationCell);
         return;
       }
     } else {
       if (
         !(
-          cell.classList.contains(styles.initialCell) ||
-          cell.classList.contains(styles.destinationCell)
+          cellElement.classList.contains(styles.initialCell) ||
+          cellElement.classList.contains(styles.destinationCell)
         )
       ) {
-        let cellState = cell.classList.contains(styles.cellOn);
+        let cellState = cellElement.classList.contains(styles.cellOn);
 
         cellState
           ? (cells[cell.id].type = CellTypes.VOID)
           : (cells[cell.id].type = CellTypes.BLOCK);
-        cell.classList.toggle(styles.cellOn);
+        cellElement.classList.toggle(styles.cellOn);
       }
     }
   };
