@@ -98,14 +98,14 @@ const Grid = forwardRef(({ width, height }, ref) => {
         cell.classList.add(styles.destinationCell);
         return;
       }
+    } else {
+      let cellState = cell.classList.contains(styles.cellOn);
+
+      cellState
+        ? (cells[cell.id].type = CellTypes.VOID)
+        : (cells[cell.id].type = CellTypes.BLOCK);
+      cell.classList.toggle(styles.cellOn);
     }
-
-    let cellState = cell.classList.contains(styles.cellOn);
-
-    cellState
-      ? (cells[cell.id].type = CellTypes.VOID)
-      : (cells[cell.id].type = CellTypes.BLOCK);
-    cell.classList.toggle(styles.cellOn);
   };
 
   const activateCell = (event) => {
