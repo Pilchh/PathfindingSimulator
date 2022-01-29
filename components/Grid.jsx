@@ -99,12 +99,19 @@ const Grid = forwardRef(({ width, height }, ref) => {
         return;
       }
     } else {
-      let cellState = cell.classList.contains(styles.cellOn);
+      if (
+        !(
+          cell.classList.contains(styles.initialCell) ||
+          cell.classList.contains(styles.destinationCell)
+        )
+      ) {
+        let cellState = cell.classList.contains(styles.cellOn);
 
-      cellState
-        ? (cells[cell.id].type = CellTypes.VOID)
-        : (cells[cell.id].type = CellTypes.BLOCK);
-      cell.classList.toggle(styles.cellOn);
+        cellState
+          ? (cells[cell.id].type = CellTypes.VOID)
+          : (cells[cell.id].type = CellTypes.BLOCK);
+        cell.classList.toggle(styles.cellOn);
+      }
     }
   };
 
