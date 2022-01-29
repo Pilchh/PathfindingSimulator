@@ -15,7 +15,7 @@ const GridRenderer = () => {
     <Grid
       width={width}
       height={height}
-      enableDiagonals={enableDiagonals}
+      enableDiagonals={!enableDiagonals}
       key={key}
       ref={gridRef}
     />
