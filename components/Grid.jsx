@@ -194,9 +194,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       } else {
         NWCell = null;
       }
-    } catch (e) {
-      console.log("NW cell blocked");
-    }
+    } catch (e) {}
 
     try {
       if (cell.row === 0) {
@@ -209,9 +207,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       } else {
         NCell = null;
       }
-    } catch (e) {
-      console.log("N cell blocked");
-    }
+    } catch (e) {}
 
     try {
       if (cell.col === width - 1 || cell.row === 0) {
@@ -224,9 +220,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       } else {
         NECell = null;
       }
-    } catch (e) {
-      console.log("NE cell blocked");
-    }
+    } catch (e) {}
 
     try {
       if (cell.col === 0) {
@@ -239,9 +233,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       } else {
         WCell = null;
       }
-    } catch (e) {
-      console.log("W cell blocked");
-    }
+    } catch (e) {}
 
     try {
       if (cell.col === width - 1) {
@@ -254,9 +246,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       } else {
         ECell = null;
       }
-    } catch (e) {
-      console.log("E cell blocked");
-    }
+    } catch (e) {}
 
     try {
       if (cell.col === 0 || cell.row === height - 1) {
@@ -269,9 +259,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       } else {
         SWCell = null;
       }
-    } catch (e) {
-      console.log("SW cell blocked");
-    }
+    } catch (e) {}
 
     try {
       if (cell.row === height - 1) {
@@ -284,9 +272,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       } else {
         SCell = null;
       }
-    } catch (e) {
-      console.log("S cell blocked");
-    }
+    } catch (e) {}
 
     try {
       if (cell.row === height - 1 || cell.col === width - 1) {
@@ -299,9 +285,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       } else {
         SECell = null;
       }
-    } catch (e) {
-      console.log("SE cell blocked");
-    }
+    } catch (e) {}
 
     let diagObj = [
       { cell: NWCell || null, parent: cell },
@@ -400,7 +384,6 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
           try {
             addAdjacentCells(queue[0]);
           } catch (e) {
-            console.log("No path or missing nodes");
             search = false;
           }
         }
@@ -411,6 +394,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
           colourPath();
         }
       }, 25);
+    },
+    stopSolve() {
+      cells = [];
     },
   }));
 

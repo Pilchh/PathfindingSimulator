@@ -7,7 +7,9 @@ const GridRenderer = () => {
   const height = 12;
   const gridRef = useRef();
   const [enableDiagonals, setEnableDiagonals] = useState(false);
+  const [solving, setSolving] = useState(false);
   const [buttonText, setButtonText] = useState("Diagonals Disabled");
+  const [solveButtonText, setSolveButtonText] = useState("Solve");
   const [key, setKey] = useState(1);
   const [grid, setGrid] = useState(
     <Grid
@@ -24,6 +26,7 @@ const GridRenderer = () => {
   }, [grid]);
 
   const clearGrid = () => {
+    gridRef.current.stopSolve();
     setGrid(
       <Grid
         width={width}
@@ -42,6 +45,15 @@ const GridRenderer = () => {
       setButtonText("Diagonals Enabled");
     }
     setEnableDiagonals((prev) => !prev);
+  };
+
+  const toggleSolve = () => {
+    if (!solving) {
+      setSolveButtonText("Stop");
+    } else {
+      setSolveButtonText("Solve");
+    }
+    setSolving((prev) => !prev);
   };
 
   return (
@@ -70,9 +82,16 @@ const GridRenderer = () => {
       <div className={styles.buttonRow}>
         <button
           className={styles.solveButton}
-          onClick={() => gridRef.current.bfsSolve()}
+          onClick={() => {
+            if (!solving) {
+              gridRef.current.bfsSolve();
+            } else {
+              clearGrid();
+            }
+            toggleSolve();
+          }}
         >
-          Solve
+          {solveButtonText}
         </button>
         <button className={styles.clearButton} onClick={() => clearGrid()}>
           Clear
