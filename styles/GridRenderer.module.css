@@ -50,3 +50,7 @@
 .buttonRow > * + * {
   margin-left: 1em;
 }
+
+.title {
+  margin-block: 0;
+}

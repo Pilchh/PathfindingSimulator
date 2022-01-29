@@ -21,6 +21,9 @@ const GridRenderer = () => {
 
   return (
     <>
+      <h1 className={styles.title}>
+        Breadth-First Search Pathfinding Algorithm
+      </h1>
       <p>
         <span className={styles.bold}>Instructions:</span> Hold down left shift
         and click on a cell to place the start and detination nodes. Use left
