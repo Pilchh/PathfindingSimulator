@@ -88,7 +88,6 @@ const Grid = forwardRef(({ width, height }, ref) => {
         (cell) => cell.type === CellTypes.DESTINATION
       );
 
-      console.log(cell);
       if (cell.type === CellTypes.INITIAL) {
         updateCellType(cellElement.id, CellTypes.VOID);
         cellElement.classList.remove(styles.initialCell);
