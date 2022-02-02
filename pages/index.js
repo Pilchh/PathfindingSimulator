@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Pathfinding Visualiser</title>
+        <title>Pathfinding Simulator</title>
         <meta
           name="description"
           content="Next.JS based Pathfinder visualiser."
@@ -59,7 +59,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Breadth-First Search Pathfinding Algorithm
+          Breadth-First Search Pathfinding Simulator
         </h1>
         <div className={styles.instructions}>
           <h2 className={styles.instructionsTitle}>Instructions</h2>
