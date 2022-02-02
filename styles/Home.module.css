@@ -3,10 +3,149 @@
 }
 
 .main {
-  min-height: 100vh;
+  min-height: 90vh;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 0;
+}
+
+.footer {
+  min-height: 10vh;
+  display: flex;
+}
+
+.footerText {
+  margin-block: auto;
+  margin-inline: auto;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.clearButton {
+  height: 40px;
+  width: 100px;
+  margin: 2px 2px 0 2px;
+  padding-inline: 10px;
+  background-color: rgb(255, 93, 93);
+  border-radius: 5px;
+  color: #fffafa;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  border: none;
+}
+
+.clearButton:hover {
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgb(255, 93, 93);
+  border: solid #fff 1px;
+}
+
+.solveButton {
+  height: 40px;
+  width: 100px;
+  margin: 2px 2px 0 2px;
+  padding-inline: 10px;
+  background-color: rgb(81, 156, 255);
+  border-radius: 5px;
+  color: #fffafa;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  border: none;
+}
+
+.solveButton:hover {
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgb(81, 156, 255);
+  border: solid #fff 1px;
+}
+.diagonalsEnabled {
+  height: 40px;
+  width: 100px;
+  margin: 2px 2px 0 2px;
+  padding-inline: 10px;
+  background-color: rgb(72, 252, 117);
+  border-radius: 5px;
+  color: #fffafa;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  border: none;
+}
+
+.diagonalsEnabled:hover {
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgb(72, 252, 117);
+  border: solid #fff 1px;
+}
+
+.diagonalsDisabled {
+  height: 40px;
+  width: 100px;
+  margin: 2px 2px 0 2px;
+  padding-inline: 10px;
+  background-color: rgb(192, 192, 192);
+  border-radius: 5px;
+  color: #fffafa;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  border: none;
+}
+
+.diagonalsDisabled:hover {
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgb(192, 192, 192);
+  border: solid #fff 1px;
+}
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+.buttonRow > * + * {
+  margin-left: 1em;
+}
+
+.title {
+  margin-block: 0;
+  margin-top: 0.5em;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+}
+
+.instructionsTitle {
+  text-align: center;
+  margin-block: 0;
+  margin-top: 16px;
+}
+
+.instructionsList {
+  margin-top: 0;
+}
+
+.diagCheckbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkboxText {
+  margin-block: auto;
+  text-align: center;
+  padding-bottom: 2px;
+  padding-left: 0.25em;
+}
+
+.marginBlockAuto {
+  margin-block: auto;
 }

@@ -1,13 +1,16 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle } from "react";
 import styles from "../styles/Grid.module.css";
 import { CellTypes } from "../utils/types";
 
-const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
+const Grid = forwardRef(({ width, height }, ref) => {
   let isMouseDown = false;
   let initialCellState = false;
   let cells = [];
   let nextID = 0;
 
+  /*
+    Function generates a grid of set width and height
+  */
   const createGrid = (width, height) => {
     let grid = [];
     let rowCount = 0;
@@ -38,6 +41,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
     );
   };
 
+  /*
+    Function creates and returns a new cell object
+  */
   const createCell = (row, col) => {
     const newCell = (
       <button
@@ -59,6 +65,7 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
         }}
       ></button>
     );
+    // Add new cell to array
     cells.push({
       id: nextID,
       cell: newCell,
@@ -71,6 +78,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
     return newCell;
   };
 
+  /*
+    Function to update the cell type
+  */
   const updateCellType = (id, update) => {
     let selectedCell = cells[id];
 
@@ -81,36 +91,44 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
     let cell = cells[event.target.id];
     let cellElement = event.target;
 
+    // If shift key is held
     if (event.shiftKey) {
+      // Bool value for if INITIAL cell exists
       let initialOcc = cells.find((obj) => obj.type === CellTypes.INITIAL);
+      // Bool value for if DESTINATION cell exists
       let destinationOcc = cells.find(
         (cell) => cell.type === CellTypes.DESTINATION
       );
 
+      // Converts INITIAL cell to VOID
       if (cell.type === CellTypes.INITIAL) {
         updateCellType(cellElement.id, CellTypes.VOID);
         cellElement.classList.remove(styles.initialCell);
         return;
       }
 
+      // Converts DESTINATION cell to VOID
       if (cell.type === CellTypes.DESTINATION) {
         updateCellType(cellElement.id, CellTypes.VOID);
         cellElement.classList.remove(styles.destinationCell);
         return;
       }
 
+      // Create INITIAL cell if not exists
       if (!initialOcc) {
         updateCellType(cellElement.id, CellTypes.INITIAL);
         cellElement.classList.add(styles.initialCell);
         return;
       }
 
+      // Create DESTINATION cell if not exists
       if (initialOcc && !destinationOcc) {
         updateCellType(cellElement.id, CellTypes.DESTINATION);
         cellElement.classList.add(styles.destinationCell);
         return;
       }
     } else {
+      // If cell isn't INITIAL or DESTINATION
       if (
         !(
           cellElement.classList.contains(styles.initialCell) ||
@@ -119,14 +137,18 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       ) {
         let cellState = cellElement.classList.contains(styles.cellOn);
 
+        // Apply correct type to cell
         cellState
-          ? (cells[cell.id].type = CellTypes.VOID)
-          : (cells[cell.id].type = CellTypes.BLOCK);
+          ? updateCellType(cellElement.id, CellTypes.VOID)
+          : updateCellType(cellElement.id, CellTypes.BLOCK);
         cellElement.classList.toggle(styles.cellOn);
       }
     }
   };
 
+  /*
+    Functions converts cell to BLOCK type
+  */
   const activateCell = (event) => {
     let cell = event.target;
 
@@ -141,6 +163,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
     }
   };
 
+  /*
+    Function converts cell to VOID type
+  */
   const deactivateCell = (event) => {
     let cell = event.target;
 
@@ -155,21 +180,30 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
     }
   };
 
+  /*
+    Function returns initial cell obj or returns -1
+  */
   const getInitialCell = () => {
     for (let i = 0; i < cells.length; i++) {
-      if (cells[i].type === "initial") {
+      if (cells[i].type === CellTypes.INITIAL) {
         return cells[i];
       }
     }
     return -1;
   };
 
+  /*
+      Function returns obj containing cells adjacent
+      to the cell provided
+  */
   const getAdjacentVoidCells = (cell) => {
     /*
-      Position of cells
-            o o o
-            o x o
-            o o o
+      Position of cells are read
+      left to right.
+                o o o
+                o x o
+                o o o
+
     */
 
     let NWCell;
@@ -183,6 +217,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
     let SCell;
     let SECell;
 
+    /*
+      North-West Cell
+    */
     try {
       if (cell.col === 0 || cell.row === 0) {
         NWCell = null;
@@ -196,6 +233,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       }
     } catch (e) {}
 
+    /*
+      North Cell
+    */
     try {
       if (cell.row === 0) {
         NCell = null;
@@ -209,6 +249,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       }
     } catch (e) {}
 
+    /*
+      North-East Cell
+    */
     try {
       if (cell.col === width - 1 || cell.row === 0) {
         NECell = null;
@@ -222,6 +265,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       }
     } catch (e) {}
 
+    /*
+      West Cell
+    */
     try {
       if (cell.col === 0) {
         WCell = null;
@@ -234,7 +280,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
         WCell = null;
       }
     } catch (e) {}
-
+    /*
+      East Cell
+    */
     try {
       if (cell.col === width - 1) {
         ECell = null;
@@ -248,6 +296,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       }
     } catch (e) {}
 
+    /*
+      South-West cell
+    */
     try {
       if (cell.col === 0 || cell.row === height - 1) {
         SWCell = null;
@@ -261,6 +312,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       }
     } catch (e) {}
 
+    /*
+      South cell
+    */
     try {
       if (cell.row === height - 1) {
         SCell = null;
@@ -274,6 +328,9 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       }
     } catch (e) {}
 
+    /*
+      South-East cell
+    */
     try {
       if (cell.row === height - 1 || cell.col === width - 1) {
         SECell = null;
@@ -287,7 +344,8 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       }
     } catch (e) {}
 
-    let diagObj = [
+    /*
+    [
       { cell: NWCell || null, parent: cell },
       { cell: NCell || null, parent: cell },
       { cell: NECell || null, parent: cell },
@@ -296,31 +354,37 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
       { cell: SWCell || null, parent: cell },
       { cell: SCell || null, parent: cell },
       { cell: SECell || null, parent: cell },
-    ];
+    ]
+    */
 
-    let noDiagObj = [
+    return [
       { cell: NCell || null, parent: cell },
       { cell: WCell || null, parent: cell },
       { cell: ECell || null, parent: cell },
       { cell: SCell || null, parent: cell },
     ];
-
-    return enableDiagonals ? diagObj : noDiagObj;
   };
 
+  /*
+    Returns HTML object with certain ID
+  */
   const loadDocumentObjectByID = (objID) => {
     return document.getElementById(objID);
   };
 
   useImperativeHandle(ref, () => ({
+    /*
+      Function to solve using BFS
+    */
     bfsSolve() {
       let queue = [];
-      let path = [];
       let searchedCells = [];
+      let path = [];
       let search = true;
       let found = false;
       let destination;
 
+      // Create initial cell obj & intialise queue
       const startingCell = {
         cell: getInitialCell(),
         parent: null,
@@ -329,31 +393,42 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
 
       queue.push(startingCell);
 
+      /*
+        Function takes each cell in path and assigns it colour
+      */
       const addAdjacentCells = (startCell) => {
         let adjacentCells = getAdjacentVoidCells(startCell.cell);
 
+        // Remove null cells
         adjacentCells.forEach(() => {
           adjacentCells = adjacentCells.filter((obj) => obj.cell !== null);
         });
 
         adjacentCells.forEach((obj) => {
-          if (obj.cell.type === "destination") {
+          // Destination cell found
+          if (obj.cell.type === CellTypes.DESTINATION) {
             found = true;
             destination = obj;
           }
           queue.push(obj);
           searchedCells.push(obj);
           loadDocumentObjectByID(obj.cell.id).classList.add(styles.searchCell);
-          cells[obj.cell.id].type = "search";
+          // Assign cell new class and update properties
+          cells[obj.cell.id].type = CellTypes.SEARCH;
           cells[obj.cell.id].distance = startCell.cell.distance + 1;
         });
 
+        // Remove current cell from queue
         queue.splice(queue.indexOf(startCell), 1);
       };
 
+      /*
+        Function iterates from destination node using 
+        the parent attribute to generate the full path
+      */
       const generatePath = () => {
         path.push(destination);
-        while (path.slice(-1)[0].parent.type !== "initial") {
+        while (path.slice(-1)[0].parent.type !== CellTypes.INITIAL) {
           let parent = path.slice(-1)[0].parent;
           path.push(
             searchedCells.filter((obj) => obj.cell.id === parent.id)[0]
@@ -361,10 +436,15 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
         }
       };
 
+      /*
+        Function takes each cell in path and assigns it colour
+      */
       const colourPath = () => {
         path.reverse();
         path.map((obj, idx) => {
+          // setTimeout for visual effect
           setTimeout(() => {
+            // The last cell is the destination cell; apply correct colouring
             if (idx === path.length - 1) {
               loadDocumentObjectByID(obj.cell.id).classList.remove(
                 styles.searchCell
@@ -379,7 +459,10 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
         });
       };
 
-      let loop = setInterval(() => {
+      /*
+        Using setInterval to iterate through the search at 25ms intervals.
+      */
+      let searchLoop = setInterval(() => {
         if (!found && search) {
           try {
             addAdjacentCells(queue[0]);
@@ -389,12 +472,15 @@ const Grid = forwardRef(({ width, height, enableDiagonals }, ref) => {
         }
 
         if (found && search) {
-          clearInterval(loop);
+          clearInterval(searchLoop);
           generatePath();
           colourPath();
         }
       }, 25);
     },
+    /*
+      Function is used to stop the solve function
+    */
     stopSolve() {
       cells = [];
     },
