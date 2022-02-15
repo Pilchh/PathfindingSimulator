@@ -1,0 +1,88 @@
+.modalBackground {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 30em;
+  height: fit-content;
+  padding: 1em;
+  margin: auto;
+}
+
+.modalTitle {
+  margin-top: 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.sizeInput {
+  height: 40px;
+  width: 60px;
+  margin: 2px 2px 0 2px;
+  padding-inline: 10px;
+  border: rgb(93, 81, 255) solid 1px;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  text-align: center;
+}
+
+.sizeInput:hover {
+  transition: ease-in-out 200ms;
+  box-shadow: 0 0 0 2px rgb(93, 81, 255);
+  border: solid #fff 1px;
+}
+
+.sizeInput:focus {
+  transition: ease-in-out 200ms;
+  box-shadow: 0 0 0 2px rgb(93, 81, 255);
+  border: solid #fff 1px;
+}
+
+.submitButton {
+  display: flex;
+  height: 40px;
+  width: 100px;
+  margin-inline: auto;
+  margin-top: 1.5em;
+  padding-inline: 10px;
+  background-color: rgb(93, 81, 255);
+  border-radius: 5px;
+  color: #fffafa;
+  font-weight: 500;
+  transition: ease-in-out 200ms;
+  border: none;
+}
+
+.submitButton:hover {
+  transition: ease-in-out 200ms;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgb(93, 81, 255);
+  border: solid #fff 1px;
+}
+
+.bySign {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+  margin-inline: 0.5em;
+}
