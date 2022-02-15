@@ -455,7 +455,7 @@ const Grid = forwardRef(({ width, height }, ref) => {
             } else {
               loadDocumentObjectByID(obj.cell.id).classList.add(styles.path);
             }
-          }, 50 * idx);
+          }, 40 * idx);
         });
       };
 
@@ -476,7 +476,7 @@ const Grid = forwardRef(({ width, height }, ref) => {
           generatePath();
           colourPath();
         }
-      }, 25);
+      }, 10);
     },
     /*
       Function is used to stop the solve function

@@ -12,7 +12,7 @@
 }
 
 .footer {
-  min-height: 10vh;
+  margin-top: 1em;
   display: flex;
 }
 

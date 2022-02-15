@@ -4,8 +4,8 @@ import styles from "../styles/Home.module.css";
 import Grid from "../components/Grid";
 
 export default function Home() {
-  const width = 20;
-  const height = 10;
+  const width = 30;
+  const height = 15;
   const gridRef = useRef();
   const [key, setKey] = useState(1);
   const [grid, setGrid] = useState(
