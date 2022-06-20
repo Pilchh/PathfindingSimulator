@@ -1,6 +1,6 @@
 # Pathfinding Simulator
 
-This is a Pathfinding Simulator using the [Breadth-First Search](https://en.wikipedia.org/wiki/Breadth-first_search) alogrithm. It is hosted on a live site located [here](https://pf.pilchh.net/). It can also be cloned or downloaded to run locally on your machine, please look at the Running Locally section to find out more.
+This is a Pathfinding Simulator using the [Breadth-First Search](https://en.wikipedia.org/wiki/Breadth-first_search) alogrithm. It is hosted on a live site located [here](https://pathfinder.pilchh.net/). It can also be cloned or downloaded to run locally on your machine, please look at the Running Locally section to find out more.
 
 ## Running Locally
 
